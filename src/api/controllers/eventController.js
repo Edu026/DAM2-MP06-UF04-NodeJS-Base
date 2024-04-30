@@ -10,3 +10,15 @@ try {
     res.status(400).send(err.message);
     }
 };
+
+exports.recoverEventById = async (req, res) => {
+    try {
+      const event = await Event.findById(req.params.id);
+      if (!event) {
+        return res.status(404).send("L'esdeveniment no s'ha trobat.");
+      }
+      res.send(event);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
+  };

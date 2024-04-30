@@ -21,33 +21,11 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api', userRoutes);
 
-app.use('/api/events', eventRoutes);
-
-/*
 // POST endpoint per inserir un esdeveniment
-app.post('/api/events', async (req, res) => {
-  try {
-    const event = new Event(req.body);
-    await event.save();
-    res.status(201).send(event);
-  } catch (err) {
-    res.status(400).send(err.message);
-  }
-});
-*/
+app.use('/api', eventRoutes);
 
 // Endpoint per recuperar un esdeveniment per ID
-app.get('/api/events/:id', async (req, res) => {
-  try {
-    const event = await Event.findById(req.params.id);
-    if (!event) {
-      return res.status(404).send("L'esdeveniment no s'ha trobat.");
-    }
-    res.send(event);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
+app.use('/api', eventRoutes);
 
 // Exporta l'instància de l'aplicació perquè pugui ser utilitzada en altres llocs, com els tests.
 module.exports = app;
