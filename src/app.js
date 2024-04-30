@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dbConfig = require('./config/db');
 const userRoutes = require('./api/routes/userRoutes');
+const eventRoutes = require('./api/routes/eventRoutes');
 const Event = require('./api/models/event');
 const app = express();
 
@@ -20,6 +21,9 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api', userRoutes);
 
+app.use('/api/events', eventRoutes);
+
+/*
 // POST endpoint per inserir un esdeveniment
 app.post('/api/events', async (req, res) => {
   try {
@@ -30,6 +34,7 @@ app.post('/api/events', async (req, res) => {
     res.status(400).send(err.message);
   }
 });
+*/
 
 // Endpoint per recuperar un esdeveniment per ID
 app.get('/api/events/:id', async (req, res) => {
